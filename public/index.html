@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>
+		Dashboard
+	</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Atomo is a Raleigh based business seeking to facilitate real world interactions through Augmented Reality and indoor location services.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/main.css">
+	<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+</head>
+<body>
+	<div class="columns">
+		<div class="column navigation-column">
+			<a class="tag">
+				powered by atomo
+			</a>
+			<a class="navbar">
+				Home ><br>
+				Buildings >
+			</a>
+		</div>
+		<div class="column main-column">
+			<a class="header">
+				207 Park Avenue, Raleigh, NC
+			</a>
+			<a-scene class="map" style="width: 35%;" build-plane embedded vr-mode-ui="enabled: false">
+				<a-entity camera id="camera" position="0 5 3" look-controls wasd-controls>
+					<a-cursor position="0 0 -1"></a-cursor>
+				</a-entity>
+			</a-scene>
+		</div>
+	</div>
+</body>
+<script>
+	AFRAME.registerComponent('build-plane', {
+		schema: {
+			size: {type: 'number', default: 5},
+		},
+		init: function() {
+			i = 0; j = 0; count = 0; size = this.data.size; maxCount = size * size -1;
+		},
+		tick: function (time, timeDelta) {
+			for (l=0;l<10;l++) {
+				if (count < maxCount) {
+					if (j<size+1) {
+						createPlaneBox(i,j,size);
+						j++;
+						count++;
+					}
+					else {
+						i++;
+						j=0;
+
+					}
+				}
+			}
+		}
+	});
+
+	function createPlaneBox(i,j,size) {
+		s = document.querySelector("a-scene");
+		b = document.createElement("a-box");
+		b.setAttribute('scale','1 .1 1');
+		b.setAttribute('cursor-listener','true')
+		b.setAttribute('color','#b5d9fe')
+		b.setAttribute('position',(i-size/2) + " -.1 " + (j-(size)));
+		c = document.createElement("a-animation");
+		c.setAttribute("attribute","material.color")
+		c.setAttribute("from","#b5d9fe")
+		c.setAttribute("to",'rgb(' + getRandom() + ", " + (getRandom() + 150) + ", " +  (getRandom() + 60)+")")
+		c.setAttribute("dur","2000")
+		b.appendChild(c);
+		s.appendChild(b);
+	}
+
+	function getRandom() {
+		return Math.floor(Math.random()*20)
+	}
+</script>
+</html>

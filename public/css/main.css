@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css);
+html {
+	background-color: gainsboro;
+	font-size: 14px;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	min-width: 300px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	text-rendering: optimizeLegibility;
+	font-family: sans-serif;
+}
+
+.columns {
+	display: flex;
+	height: 100%;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	background: aqua;
+}
+
+.main-column {
+	flex: 3;
+}
+
+.header {
+	background: white;
+	padding: 20px;
+}
+
+.map {
+	background: gainsboro;
+	padding: 200px;
+	border: 5px solid seagreen;
+	flex: 1;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.tag {
+	background-color: darkslateblue;
+	font-family: montserrat;
+	padding: 20px;
+}
+.navbar {
+	background-color: purple;
+	padding: 20px;
+	margin-top: 1px;
+}
